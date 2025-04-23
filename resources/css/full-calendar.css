@@ -1,0 +1,13 @@
+.fc-button {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.fc-button.fc-button-primary.fc-next-button,
+.fc-button.fc-button-primary.fc-prev-button {
+  @apply bg-transparent border-none text-gray-600 hover:bg-gray-100 active:text-gray-600 active:bg-transparent;
+}
+
+.fc-scrollgrid-sync-table td {
+  @apply cursor-pointer hover:bg-gray-100;
+}

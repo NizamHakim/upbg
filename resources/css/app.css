@@ -1,0 +1,418 @@
+@import "./tom-select.css";
+@import "./full-calendar.css";
+
+@tailwind base;
+
+@layer base {
+  input[type="number"] {
+    @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full;
+  }
+
+  input[type="checkbox"] {
+    @apply appearance-none size-4 border border-gray-200 shadow-sm rounded cursor-pointer;
+  }
+
+  select {
+    @apply w-full cursor-pointer;
+  }
+
+  th {
+    @apply font-medium text-gray-700;
+  }
+
+  section {
+    @apply rounded-md bg-white p-6 shadow-sm;
+  }
+
+  .scrollbar {
+    scrollbar-gutter: stable;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-md;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@tailwind components;
+
+@layer components {
+  .btn {
+    @apply px-4 py-1.5 rounded border font-medium transition text-xs shadow-sm text-center;
+  }
+  a.btn {
+    @apply block;
+  }
+
+  .btn-rounded {
+    @apply size-9 rounded-full border font-medium transition text-xs shadow-sm;
+  }
+
+  .btn-white {
+    @apply bg-white hover:bg-gray-100;
+  }
+
+  .btn-gray {
+    @apply bg-gray-mild border-transparent hover:bg-gray-200;
+  }
+
+  .btn-green-solid {
+    @apply bg-green-600 border-green-600 hover:bg-green-700 hover:border-green-700 text-white;
+  }
+
+  .btn-green-outline {
+    @apply bg-white border-green-600 text-green-600 hover:bg-green-600 hover:text-white;
+  }
+
+  .btn-red-solid {
+    @apply bg-red-600 border-red-600 hover:bg-red-700 hover:border-red-700 text-white;
+  }
+
+  .btn-red-outline {
+    @apply bg-white border-red-600 text-red-600 hover:bg-red-600 hover:text-white;
+  }
+
+  .btn-upbg-solid {
+    @apply bg-upbg border-upbg hover:bg-upbg-dark hover:border-upbg-dark text-white;
+  }
+
+  .btn-upbg-outline {
+    @apply bg-white border-upbg text-upbg hover:bg-upbg hover:text-white;
+  }
+
+  .btn-green-solid.is-fetching {
+    @apply cursor-progress opacity-85 gap-2 hover:bg-green-600 hover:border-green-600;
+  }
+
+  .btn-green-outline.is-fetching {
+    @apply cursor-progress opacity-85 gap-2 hover:bg-green-600 hover:text-white;
+  }
+
+  .btn-red-solid.is-fetching {
+    @apply cursor-progress opacity-85 gap-2 hover:bg-red-600 hover:border-red-600;
+  }
+
+  .btn-red-outline.is-fetching {
+    @apply cursor-progress opacity-85 gap-2 hover:bg-red-600 hover:text-white;
+  }
+
+  .btn-upbg-solid.is-fetching {
+    @apply cursor-progress opacity-85 gap-2 hover:bg-upbg hover:border-upbg;
+  }
+
+  .btn-upbg-outline.is-fetching {
+    @apply cursor-progress opacity-85 gap-2 hover:bg-upbg hover:text-white;
+  }
+
+  .page-title {
+    @apply font-bold text-upbg text-2xl sm:text-3xl;
+  }
+
+  .input-label {
+    @apply text-gray-700 font-medium mb-1.5;
+  }
+
+  .input-appearance {
+    @apply px-2 py-1 bg-gray-mild rounded outline-none border border-transparent focus:border-upbg-light transition duration-200 h-9 w-full;
+  }
+
+  .input-readonly {
+    @apply read-only:focus:border-gray-200 read-only:bg-gray-200 read-only:cursor-not-allowed;
+  }
+
+  .input-error {
+    @apply text-red-600 text-sm mt-1 font-medium;
+  }
+
+  .alert {
+    @apply rounded-md p-3;
+  }
+
+  .alert.alert-red {
+    @apply bg-red-100 text-red-600;
+  }
+
+  .alert.alert-upbg {
+    @apply bg-blue-100 text-upbg;
+  }
+
+  .alert.alert-green {
+    @apply bg-green-100 text-green-600;
+  }
+
+  .checkbox {
+    @apply px-3 py-1.5 rounded border font-medium transition text-xs shadow-sm inline-flex cursor-pointer items-center gap-2 bg-white;
+  }
+
+  .checkbox.checkbox-upbg {
+    @apply has-[:checked]:bg-upbg has-[:checked]:border-upbg has-[:checked]:text-white text-upbg;
+  }
+
+  .checkbox.checkbox-upbg .checkmark {
+    @apply text-upbg;
+  }
+
+  .checkbox.checkbox-red {
+    @apply has-[:checked]:bg-red-600 has-[:checked]:border-red-600 has-[:checked]:text-white text-red-600;
+  }
+
+  .checkbox.checkbox-red .checkmark {
+    @apply text-red-600;
+  }
+
+  .checkbox.checkbox-transparent {
+    @apply shadow-none border-none w-fit bg-transparent p-0;
+  }
+
+  .checkbox.checkbox-transparent .checkmark {
+    @apply text-upbg;
+  }
+
+  .checkbox.checkbox-transparent .checkbox-label {
+    @apply hidden;
+  }
+
+  .empty-query {
+    @apply text-gray-400 text-center font-medium;
+  }
+
+  .top-nav-link {
+    @apply rounded bg-white px-3 py-1 text-base font-medium text-gray-600 transition hover:bg-gray-100;
+  }
+
+  .sidenav {
+    @apply fixed inset-0 z-20 bg-black bg-opacity-25 opacity-0 transition-opacity lg:h-[calc(100vh-4rem)] lg:sticky lg:top-16 lg:z-0 lg:opacity-100;
+  }
+
+  .sidenav-content {
+    @apply fixed left-0 z-30 flex h-full w-64 flex-col bg-white transition-transform -translate-x-full lg:sticky lg:top-20 lg:bottom-20 lg:z-0 lg:translate-x-0;
+  }
+
+  .side-nav-link {
+    @apply rounded text-sm text-gray-600 hover:bg-gray-200 transition;
+  }
+
+  .page-header {
+    @apply text-xl text-upbg font-semibold mb-6;
+  }
+
+  .filter-container {
+    @apply fixed inset-0 z-20 flex -translate-x-full flex-col overflow-y-scroll bg-white px-4 pb-28 pt-4 transition-all sm:static sm:z-0 sm:max-h-0 sm:translate-x-0 sm:overflow-hidden sm:p-0;
+  }
+
+  .fp-datepicker,
+  .fp-timepicker {
+    @apply cursor-pointer pr-6;
+  }
+
+  .fp-datepicker {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C!--!Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22%234b5563%22%20d%3D%22M128%200c17.7%200%2032%2014.3%2032%2032l0%2032%20128%200%200-32c0-17.7%2014.3-32%2032-32s32%2014.3%2032%2032l0%2032%2048%200c26.5%200%2048%2021.5%2048%2048l0%2048L0%20160l0-48C0%2085.5%2021.5%2064%2048%2064l48%200%200-32c0-17.7%2014.3-32%2032-32zM0%20192l448%200%200%20272c0%2026.5-21.5%2048-48%2048L48%20512c-26.5%200-48-21.5-48-48L0%20192zm64%2080l0%2032c0%208.8%207.2%2016%2016%2016l32%200c8.8%200%2016-7.2%2016-16l0-32c0-8.8-7.2-16-16-16l-32%200c-8.8%200-16%207.2-16%2016zm128%200l0%2032c0%208.8%207.2%2016%2016%2016l32%200c8.8%200%2016-7.2%2016-16l0-32c0-8.8-7.2-16-16-16l-32%200c-8.8%200-16%207.2-16%2016zm144-16c-8.8%200-16%207.2-16%2016l0%2032c0%208.8%207.2%2016%2016%2016l32%200c8.8%200%2016-7.2%2016-16l0-32c0-8.8-7.2-16-16-16l-32%200zM64%20400l0%2032c0%208.8%207.2%2016%2016%2016l32%200c8.8%200%2016-7.2%2016-16l0-32c0-8.8-7.2-16-16-16l-32%200c-8.8%200-16%207.2-16%2016zm144-16c-8.8%200-16%207.2-16%2016l0%2032c0%208.8%207.2%2016%2016%2016l32%200c8.8%200%2016-7.2%2016-16l0-32c0-8.8-7.2-16-16-16l-32%200zm112%2016l0%2032c0%208.8%207.2%2016%2016%2016l32%200c8.8%200%2016-7.2%2016-16l0-32c0-8.8-7.2-16-16-16l-32%200c-8.8%200-16%207.2-16%2016z%22%2F%3E%3C%2Fsvg%3E");
+    background-position: right 0.7rem center;
+    background-repeat: no-repeat;
+    background-size: 0.875rem;
+  }
+
+  .fp-timepicker {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C!--!Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202025%20Fonticons%2C%20Inc.--%3E%3Cpath%20fill%3D%22%234b5563%22%20d%3D%22M464%20256A208%20208%200%201%201%2048%20256a208%20208%200%201%201%20416%200zM0%20256a256%20256%200%201%200%20512%200A256%20256%200%201%200%200%20256zM232%20120l0%20136c0%208%204%2015.5%2010.7%2020l96%2064c11%207.4%2025.9%204.4%2033.3-6.7s4.4-25.9-6.7-33.3L280%20243.2%20280%20120c0-13.3-10.7-24-24-24s-24%2010.7-24%2024z%22%2F%3E%3C%2Fsvg%3E");
+    background-position: right 0.7rem center;
+    background-repeat: no-repeat;
+    background-size: 0.875rem;
+  }
+
+  .jadwal thead th {
+    @apply p-3 font-semibold tracking-wide text-left;
+  }
+
+  .jadwal tbody th,
+  .jadwal tbody td {
+    @apply p-3 text-left whitespace-nowrap;
+  }
+
+  .jadwal-item {
+    @apply flex flex-col rounded-md p-2 cursor-pointer transition hover:shadow;
+  }
+
+  .navigation-back {
+    @apply mr-2 inline-flex size-9 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-200;
+  }
+
+  .menu .menu-item {
+    @apply text-left px-2 py-1 cursor-pointer transition hover:bg-gray-100 truncate;
+  }
+
+  .notification-rail {
+    @apply fixed right-4 top-5 z-20 flex flex-col gap-2;
+  }
+
+  .notification {
+    @apply rounded-md shadow-full-mild transition duration-300 bg-white w-96 overflow-clip translate-x-[100vw];
+  }
+
+  .notification.notification-success {
+    @apply text-green-600;
+  }
+
+  .notification.notification-error {
+    @apply text-red-600;
+  }
+
+  .notification .close-notification {
+    @apply flex justify-center items-center size-6 border-none text-xl text-gray-600 shadow-none transition absolute right-1 top-1 hover:bg-gray-100;
+  }
+
+  .notification .notification-progress {
+    @apply absolute bottom-0 h-1;
+  }
+
+  .notification.notification-success .notification-progress {
+    @apply bg-green-600;
+  }
+
+  .notification.notification-error .notification-progress {
+    @apply bg-red-600;
+  }
+
+  .is-fetching {
+    @apply flex justify-center items-center;
+  }
+
+  .table-wrapper {
+    @apply border divide-y flex flex-col;
+  }
+
+  .table-header {
+    @apply font-semibold grid items-center gap-x-4 px-4 py-4;
+  }
+
+  .table-content {
+    @apply divide-y;
+  }
+
+  .table-item {
+    @apply grid items-center gap-x-4 px-4 py-4;
+  }
+
+  .link {
+    @apply max-w-fit underline decoration-transparent text-upbg transition hover:text-upbg-light hover:decoration-upbg-light;
+  }
+
+  .hover-shadow-div {
+    @apply rounded-md border p-2 transition hover:shadow;
+  }
+
+  .dotted-placeholder-div {
+    @apply flex h-14 items-center justify-center rounded-md border border-dashed border-gray-400 text-gray-400 text-center;
+  }
+}
+
+@tailwind utilities;
+
+@layer utilities {
+  .filter-container.open {
+    @apply translate-x-0 sm:max-h-[470px] sm:py-4;
+  }
+
+  .input-dropdown.open .dropdown-button {
+    @apply outline-upbg-light;
+  }
+
+  .input-dropdown.open .dropdown-icon {
+    @apply rotate-180;
+  }
+
+  .input-dropdown.open .dropdown-options-container {
+    @apply opacity-100;
+  }
+
+  .input-dropdown.is-null .dropdown-text {
+    @apply text-gray-400 font-normal;
+  }
+
+  .dropdown-option.selected {
+    @apply border-upbg;
+  }
+
+  .dialog.open {
+    @apply opacity-100;
+  }
+
+  .btn-hadir.active {
+    @apply bg-green-600 border-green-600 text-white font-semibold hover:bg-green-600;
+  }
+
+  .btn-alfa.active {
+    @apply bg-red-600 border-red-600 text-white font-semibold hover:bg-red-600;
+  }
+
+  .search-bar {
+    @apply relative;
+  }
+
+  .search-bar .search-icon {
+    @apply absolute left-3 top-1/2 -translate-y-1/2 text-gray-400;
+  }
+
+  .search-bar .search-input {
+    @apply px-9;
+  }
+
+  .search-bar .submit-button {
+    @apply absolute right-1 top-1/2 hidden size-7 -translate-y-1/2 rounded-sm bg-upbg text-white transition hover:bg-upbg-dark;
+  }
+
+  .profile-menu.open {
+    @apply opacity-100 translate-y-1;
+  }
+
+  .switch-role-toggle.open i {
+    @apply rotate-180;
+  }
+
+  .switch-role-dropdown.open {
+    @apply max-h-96;
+  }
+
+  .top-nav-link.active {
+    @apply text-upbg hover:bg-white;
+  }
+
+  .sidenav.open {
+    @apply opacity-100;
+  }
+
+  .sidenav.open .sidenav-content {
+    @apply translate-x-0;
+  }
+
+  .side-nav-link.active {
+    @apply bg-upbg text-white font-medium;
+  }
+
+  .modal.open {
+    @apply opacity-100;
+  }
+
+  .modal.open .modal-content {
+    @apply translate-y-0;
+  }
+
+  .notification.show {
+    @apply translate-x-0;
+  }
+
+  .notification.show .notification-progress {
+    @apply animate-notification-progress;
+  }
+}
