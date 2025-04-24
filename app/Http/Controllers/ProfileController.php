@@ -36,7 +36,7 @@ class ProfileController extends Controller
       }
 
       $directory = 'images';
-      $filename = $request->nik . '.' . $request->file('profile-picture')->extension();
+      $filename = $user->nik . '.' . $request->file('profile-picture')->extension();
       $profilePicture = $request->file('profile-picture')->storeAs($directory, $filename, 'public');
 
       $user->update([

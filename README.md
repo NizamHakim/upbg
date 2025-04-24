@@ -2,10 +2,17 @@
 
 ## Daftar Isi
 
+0. [Prerequisite](#prerequisite)
 1. [Instalasi Dependency](#a-instalasi-dependency)
 2. [Instalasi Project](#b-instalasi-project)
-3. [Konfigurasi Hosting](#c-konfigurasi-hosting)
-4. [Finalisasi](#d-finalisasi)
+3. [Konfigurasi Database](#c-konfigurasi-database)
+4. [Konfigurasi Hosting](#d-konfigurasi-hosting)
+5. [Finalisasi](#e-finalisasi)
+
+## Prerequisite
+
+- Dokumentasi ini dibuat dengan asumsi terminal yang digunakan adalah `Command Prompt` atau `Git Bash` dan bukan `Windows Powershell` karena beberapa command pada `Command Prompt` berbeda dengan `Windows Powershell` .
+- Dokumentasi ini sebagai acuan utama migrasi server sistem upbg dari komputer server lama ke komputer server baru, untuk panduan instalasi dari awal (bukan migrasi) juga sudah disertakan, mohon dibaca dengan seksama agar tidak terjadi kesalahan.
 
 ## A. Instalasi Dependency
 
@@ -18,28 +25,34 @@
 
 ### xampp
 
+![image](https://placehold.co/600x400)
+
 ### composer
+
+![image](https://placehold.co/600x400)
 
 ### npm
 
+![image](https://placehold.co/600x400)
+
 ### php
+
+![image](https://placehold.co/600x400)
 
 ## B. Instalasi Project
 
-Jika tidak memiliki akses file `upbg.zip` pada komputer server sebelumnya maka dapat melakukan clone dari repository ini, akan tetapi akan memerlukan beberapa konfigurasi tambahan.
-
 ### Clone Repository
 
-Buka `Command Prompt` pada komputer anda (bukan `Windows Powershell`) kemudian clone repository menggunakan command
+Buka folder `htdocs` pada tempat xampp diinstal (biasanya `C:/xampp/htdocs`) kemudian klik kanan dan pilih `Open in Terminal` kemudian clone repository menggunakan command
 
 ```bash
-git clone
+git clone https://github.com/NizamHakim/upbg.git
 ```
 
 Pindah ke folder yang baru dibuat dengan command
 
 ```bash
-cd
+cd upbg
 ```
 
 Kemudian jalankan command
@@ -89,32 +102,76 @@ Lakukan key generation untuk mengisi `APP_KEY=` pada `.env` menggunakan command
 php artisan key:generate
 ```
 
+## C. Konfigurasi Database
+
+### Export database dari komputer server
+
+Buka `phpmyadmin` pada komputer server sebelumnya kemudian `Export` database. Copy file hasil export untuk dipindahkan pada komputer server baru.
+
+![image](https://placehold.co/600x400)
+
 ### Buat database baru
 
-Buka `phpmyadmin` dan buat database baru sesuai dengan nama yang digunakan pada `DB_DATABASE=` . Kemudian jalankan command dibawah untuk migrate table yang dibutuhkan sistem
+Pada komputer server yang baru buat database baru sesuai dengan nama yang digunakan pada `DB_DATABASE=` . Jika ingin menggunakan data dari database sebelumnya maka lakukan `Import` pada database yang baru dibuat.
+
+![image](https://placehold.co/600x400)
+
+Jika tidak ingin menggunakan data yang lama maka jalankan command
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
-Jika ingin menggunakan data dari database sebelumnya maka lakukan.
+### Jalankan sistem
 
-```
-
-```
-
-Tetapi jika ingin memulai dari awal maka jalankan seeder dengan command. Seeder ini akan menginisiasi data-data Kelas dan Tes yang terdaftar pada saat sistem ini dibuat.
-
-```bash
-php artisan db:seed
-```
-
-### Start sistem menggunakan command
+Setelah konfigurasi diatas seharusnya sistem sudah bisa dijalankan secara lokal menggunakan command
 
 ```bash
 composer run dev
 ```
 
-## C. Konfigurasi Hosting
+## D. Konfigurasi Hosting
 
-## D. Finalisasi
+TBA
+
+## E. Finalisasi
+
+Untuk mempermudah start server disarankan untuk membuat file baru untuk menjalankan command. Buka folder tempat anda ingin menyimpan file ini kemudian klik kanan dan pilih `Open in Terminal` .
+
+### Linux
+
+1. Buat file baru dengan menjalankan command
+
+```bash
+touch start_server.sh
+```
+
+2. Ubah permission menggunakan command
+
+```bash
+chmod +x start_server.sh
+```
+
+3. Tambahkan command ke file menggunakan command
+
+```bash
+echo TBA > start_server.sh
+```
+
+4. Sistem dapat distart dengan menjalankan (double click) file ini
+
+### Windows
+
+1. Buat file baru dengan menjalankan command
+
+```bash
+touch start_server.bat
+```
+
+2. Tambahkan command ke file menggunakan command
+
+```bash
+echo TBA > start_server.sh
+```
+
+3. Sistem dapat distart dengan menjalankan (double click) file ini
