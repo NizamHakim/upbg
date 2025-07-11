@@ -301,7 +301,6 @@ class KelasAllUserSheet implements
   public static function afterSheet(AfterSheet $event)
   {
     $sheet = $event->sheet->getDelegate();
-    $tandatangan = ConfigLaporan::where('group', 'Tanda Tangan')->first()->data;
     $sheet->getPageSetup()->setPaperSize(PageSetup::PAPERSIZE_A4)->setOrientation(PageSetup::ORIENTATION_PORTRAIT);
     $rows = $sheet->getHighestRow() + 1;
     $cols = $sheet->getHighestColumn();
@@ -368,6 +367,7 @@ class KelasAllUserSheet implements
       ],
     ]);
 
+    $tandatangan = ConfigLaporan::where('group', 'Tanda Tangan')->first()->data;
     $date = Carbon::now()->format('F d, Y');
     $sheet->setCellValue("F" . ($rows + 3), "Surabaya, {$date}");
     $sheet->setCellValue("F" . ($rows + 4), $tandatangan['Jabatan']);

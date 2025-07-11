@@ -12,7 +12,7 @@
 ## Prerequisite
 
 - Dokumentasi ini dibuat dengan asumsi terminal yang digunakan adalah `Command Prompt` atau `Git Bash` dan bukan `Windows Powershell` karena beberapa command pada `Command Prompt` berbeda dengan `Windows Powershell` .
-- Dokumentasi ini sebagai acuan utama migrasi server sistem upbg dari komputer server lama ke komputer server baru, untuk panduan instalasi dari awal (bukan migrasi) juga sudah disertakan, mohon dibaca dengan seksama agar tidak terjadi kesalahan.
+- Dokumentasi ini sebagai acuan utama migrasi server sistem upbg dari komputer server lama ke komputer server baru, untuk panduan instalasi dari awal (bukan migrasi) juga sudah disertakan.
 
 ## A. Instalasi Dependency
 

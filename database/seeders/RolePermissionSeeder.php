@@ -10,7 +10,6 @@ class RolePermissionSeeder extends Seeder
 {
   public function run(): void
   {
-    // Roles
     $superuser = Role::create(['name' => 'Superuser']);
     $adminPengajaran = Role::create(['name' => 'Admin Pengajaran']);
     $stafPengajar = Role::create(['name' => 'Staf Pengajar']);
@@ -18,7 +17,6 @@ class RolePermissionSeeder extends Seeder
     $stafTes = Role::create(['name' => 'Staf Pengawas Tes']);
     $bagianKeuangan = Role::create(['name' => 'Bagian Keuangan']);
 
-    // Kelas related
     $aksesSemuaKelas = Permission::create(['name' => 'akses-semua-kelas']);
     $lihatDaftarKelas = Permission::create(['name' => 'lihat-daftar-kelas']);
     $lihatDetailKelas = Permission::create(['name' => 'lihat-detail-kelas']);

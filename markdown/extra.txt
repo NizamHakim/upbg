@@ -1,0 +1,14 @@
+ext-gd
+ext-zip
+
+php artisan storage:link
+
+cd C:\xampp\htdocs\upbg && concurrently "php artisan serve --host=10.7.89.178" "npm run dev -- --host=10.7.89.178"
+
+version
+xampp 3.3.0
+composer 2.8.6
+php 8.2.12
+node 22.14.0
+
+touch == echo
