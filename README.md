@@ -22,13 +22,15 @@
 | [composer](https://getcomposer.org/download/)                          | latest              |
 | [nodejs](https://nodejs.org/dist/v22.17.0/node-v22.17.0-x64.msi)       | 22.17.0             |
 
-*note:*  
-*1. silahkan coba install versi terbaru terlebih dahulu, jika error gunakan versi yang tertera diatas*  
-*2. link versi diatas hanya untuk windows, untuk sistem operasi lain silahkan ikuti petunjuk pada halaman download dibawah*  
-*3. instruksi ditulis berdasarkan hasil percobaan pada windows, link referensi untuk linux sudah dicantumkan pada akhir tiap-tiap poin*  
+_note:_  
+_1. silahkan coba install versi terbaru terlebih dahulu, jika error gunakan versi yang tertera diatas_  
+_2. link versi diatas hanya untuk windows, untuk sistem operasi lain silahkan ikuti petunjuk pada halaman download dibawah_  
+_3. instruksi ditulis berdasarkan hasil percobaan pada windows, link referensi untuk linux sudah dicantumkan pada akhir tiap-tiap poin_
 
 ### 1. XAMPP
+
 #### Windows
+
 Pergi ke halaman download [XAMPP](https://www.apachefriends.org/download.html) dan klik download pada versi yang terbaru. Saat dokumen ini dibuat, versi yang terbaru adalah 8.2.12 / PHP 8.2.12.
 
 ![image](markdown/xampp_1.png)
@@ -53,13 +55,16 @@ Kemudian simpan dan tutup file php.ini. Jalankan XAMPP untuk module Apache dan M
 ![image](markdown/xampp_4.png)
 
 #### Linux
+
 1. Ikuti panduan [Instalasi XAMPP pada Linux](https://hackernoon.com/how-to-install-xampp-on-linux-a-quick-step-by-step-guide)
 2. Hilangkan `;` pada 2 baris pada file php.ini seperti panduan diatas
 3. Jalankan XAMPP
 
 ### 2. Composer
+
 #### Windows
-Pastikan sudah menginstall XAMPP karena instalasi Composer membutuhkan PHP yang ada pada XAMPP. Pergi ke halaman download [Composer](https://getcomposer.org/download/) dan klik `Composer-Setup.exe` untuk mendownload versi yang terbaru.  
+
+Pastikan sudah menginstall XAMPP karena instalasi Composer membutuhkan PHP yang ada pada XAMPP. Pergi ke halaman download [Composer](https://getcomposer.org/download/) dan klik `Composer-Setup.exe` untuk mendownload versi yang terbaru.
 
 ![image](markdown/composer_1.png)
 
@@ -70,11 +75,14 @@ Jalankan file hasil download dan ikuti konfigurasi default. Pada bagian ini inst
 Selesaikan proses instalasi dengan konfigurasi default.
 
 #### Linux
-1. Pastikan sudah menginstall XAMPP karena instalasi Composer membutuhkan PHP yang ada pada XAMPP. 
+
+1. Pastikan sudah menginstall XAMPP karena instalasi Composer membutuhkan PHP yang ada pada XAMPP.
 2. Ikuti panduan [Instalasi Composer pada Ubuntu](https://phoenixnap.com/kb/how-to-install-composer-ubuntu)
 
 ### 3. nodejs
+
 #### Windows
+
 Pergi ke halaman download [nodejs](https://nodejs.org/en/download) dan klik download pada versi yang terbaru. Saat dokumen ini dibuat, versi yang terbaru adalah 22.17.0.
 
 ![image](markdown/node_1.png)
@@ -84,12 +92,14 @@ Jalankan file hasil download dan selesaikan instalasi dengan konfigurasi default
 ![image](markdown/node_2.png)
 
 #### Linux
-1. Ikuti panduan [Instalasi nodejs pada Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04) 
+
+1. Ikuti panduan [Instalasi nodejs pada Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
 
 ## B. Instalasi Project
 
 ### Download Repository
-Buka [repository project](https://github.com/NizamHakim/upbg) dan download project dalam zip.  
+
+Buka [repository project](https://github.com/NizamHakim/upbg) dan download project dalam zip.
 
 ![image](markdown/repo_1.png)
 
@@ -122,12 +132,6 @@ Beberapa konfigurasi yang perlu disesuaikan adalah sebagai berikut
 ```ini
 APP_ENV=production
 APP_DEBUG=false
-APP_TIMEZONE=Asia/Jakarta
-APP_URL=http://sim.upbg
-
-APP_LOCALE=id
-APP_FALLBACK_LOCALE=id
-APP_FAKER_LOCALE=id_ID
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -137,6 +141,7 @@ DB_USERNAME=root
 ```
 
 ### Generate key
+
 Lakukan key generation untuk mengisi `APP_KEY=` pada `.env` menggunakan command
 
 ```bash
@@ -144,6 +149,7 @@ php artisan key:generate
 ```
 
 ### Symbolic Link
+
 Tambahkan symbolic link agar sistem dapat membaca file seperti foto menggunakan command
 
 ```bash
@@ -184,7 +190,58 @@ composer run dev
 
 ## D. Konfigurasi Hosting
 
-TBA
+### Konfigurasi Static IP
+
+#### Windows
+
+Buka `Settings` > `Network & Internet` > `Wi-Fi` > `[Nama Wi-Fi]` dan catat IPv4 address. Pada saat dokumen ini dibuat IP address adalah `10.7.89.178`.
+
+Kemudian buka `Control Panel` > `Network and Internet` > `Network and Sharing Center` > `Change adapter settings`. Pilih network yang komputer anda gunakan dan pilih properties.
+
+![image](markdown/ip_1.png)
+
+Pilih `Internet Protocol Version 4`.
+
+![image](markdown/ip_2.png)
+
+Masukkan konfigurasi static ip
+
+![image](markdown/ip_3.png)
+
+#### Linux
+
+Ikuti panduan [Konfigurasi Static IP Pada Ubuntu](https://www.eukhost.com/kb/how-to-configure-a-static-ip-address-in-ubuntu/)
+
+### Konfigurasi Webserver
+
+#### Windows
+
+Buka file `.env` pada project ini dan edit `APP_URL` menjadi static IP yang sudah dikonfigurasi sebelumnya
+
+```ini
+APP_URL=10.7.89.178
+```
+
+Buka konfigurasi virtual host apache pada `C:\xampp\apache\conf\extra\httpd-vhosts.conf` dan tambahkan block berikut. Isi `ServerName` dengan IP yang sudah dikonfigurasi sebelumnya.
+
+```
+<VirtualHost *:80>
+    ServerName 10.7.89.178
+    DocumentRoot "C:/xampp/htdocs/upbg/public"
+    <Directory "C:/xampp/htdocs/upbg/public">
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+Restart apache server pada XAMPP control panel
+
+![image](markdown/webserver_1.png)
+
+#### Linux
+
+Sesuaikan path xampp pada Linux (pada windows `C:\xampp\apache\conf\extra\httpd-vhosts.conf`) dan ikuti langkah diatas.
 
 ## E. Finalisasi
 
@@ -205,7 +262,6 @@ echo 'cd C:\xampp\htdocs\upbg && concurrently "php artisan serve --host=10.7.89.
 ```
 
 3. Sistem dapat distart dengan menjalankan (double click) file ini
-
 
 ### Linux
 
